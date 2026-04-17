@@ -12,12 +12,16 @@ import { New } from "./pages/products/New";
 import { User } from "./pages/user/User";
 import { UserDetails } from "./pages/user/UserDetails";
 import { UserAdmin } from "./pages/user/UserAdmin";
+import { Profile } from "./pages/Profile";
+import { AuthProvider } from "./pages/Auth";
+import { Login } from "./pages/Login";
+import { RequiredAuth } from "./pages/RequiredAuth";
 
 const LazyAbout = lazy(() => import("../src/pages/About"));
 
 function App() {
   return (
-    <>
+    <AuthProvider>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -30,20 +34,28 @@ function App() {
           <Route path=":userId" element={<UserDetails />} />
           <Route path="admin" element={<UserAdmin />} />
         </Route>
-        {/* <Route path="about" element={<About />} /> */}
         <Route
           path="about"
           element={
-            <Suspense fallback={'Loading...'}>
+            <Suspense fallback={"Loading..."}>
               <LazyAbout />
             </Suspense>
           }
         />
         <Route path="contact" element={<Contact />} />
         <Route path="order-summary" element={<OrderSummary />} />
+        <Route
+          path="profile"
+          element={
+            <RequiredAuth>
+              <Profile />
+            </RequiredAuth>
+          }
+        />
+        <Route path="login" element={<Login />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-    </>
+    </AuthProvider>
   );
 }
 
