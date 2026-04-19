@@ -1,17 +1,18 @@
 import { Outlet, useSearchParams } from "react-router-dom";
 
 export const User = () => {
-  const [searchparams, setSearchParams] = useSearchParams();
-  // console.log("Search params: ", searchparams);
-  // console.log("Get filter value from 'Search params': ", searchparams.get('filter'));
-  const showActiveUsers = searchparams.get("filter") === "active";
+  const [searchParams, setSearchParams] = useSearchParams();
+  // console.log("Search params: ", searchParams);
+  // console.log("Get filter value from 'Search params': ", searchParams.get('filter'));
+  console.log("All Search Params:", Object.fromEntries([...searchParams]));
+  const showActiveUsers = searchParams.get("filter") === "active";
 
   return (
     <>
       <div className="flex justify-end gap-4 my-4">
         <button
           onClick={() => {
-            setSearchParams({ filter: "active" });
+            setSearchParams({ filter: "active", country: "India", state: "AP" });
           }}
           className="place-order-btn"
         >
