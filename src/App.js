@@ -15,7 +15,7 @@ import { UserAdmin } from "./pages/user/UserAdmin";
 import { Profile } from "./pages/Profile";
 import { AuthProvider } from "./pages/Auth";
 import { Login } from "./pages/Login";
-import { RequiredAuth } from "./pages/RequiredAuth";
+import { RequireAuth } from "./pages/RequiredAuth";
 
 const LazyAbout = lazy(() => import("../src/pages/About"));
 
@@ -47,9 +47,9 @@ function App() {
         <Route
           path="profile"
           element={
-            <RequiredAuth>
+            <RequireAuth>
               <Profile />
-            </RequiredAuth>
+            </RequireAuth>
           }
         />
         <Route path="login" element={<Login />} />
